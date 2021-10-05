@@ -39,7 +39,9 @@ build/Release
 
 # Dependency directories
 node_modules/
+react-calculator/node_modules
 jspm_packages/
+react-calculator/jspm_packages/
 
 # TypeScript v1 declaration files
 typings/
