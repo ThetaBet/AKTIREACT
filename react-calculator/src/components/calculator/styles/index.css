@@ -1,46 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Stick+No+Bills&display=swap');
+
 .calculator-body {
     width: 500px;
-    height: 450px;
-    box-shadow: 1px 1px 4px rgba(10,10,10, .3);
-    margin: 15px auto;
-    padding: 15px;
-    border-radius: 4px;
+    /* height: 600px; */
+    background-color: #666666;
+    box-sizing: border-box;
+    border-radius: 8px;
 }
 
 .upper-wrapper {
-    padding: 15px;
-    background-color: green;
-    border-radius: 4px;
+    background-color: #292929;
+    transform: rotate3d(0,0, .5, 0);
+    height: 100px;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bottom-wrapper {
     display: flex;
-    margin: 15px 0;
+    padding: 16px;
+    height: 380px;
 }
 
 .digit-wrapper {
     display: flex;
     flex-wrap: wrap;
-    width: 70%;
+    width: 60%;
     margin-right: auto;
-    justify-content: space-around;
+    align-items: flex-start;
+    justify-content: space-between;
+
 }
 
 .operators-wrapper {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 25%;
+    width: 112px;
+    align-items: center;
+    justify-content: center;
 }
 
 .button {
     border-radius: 4px;
-    box-shadow: 1px 1px 4px rgba(10,10,10, .3);
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
     cursor: pointer;
+    background: #292929;
+    color: white;
+    font-size: 1.6em;
 }
 
 
@@ -63,4 +75,19 @@
 
 .display {
     text-align: right;
+    background-color: #73a098;
+    border-radius: 4px;
+    width: 100%;
+    height: calc(100% - 32px);
+    margin: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-family: 'Stick No Bills', sans-serif;
+}
+
+.main-value {
+    padding: 16px;
+    font-size: 1.6em;
+    margin-right: 24px;
 }

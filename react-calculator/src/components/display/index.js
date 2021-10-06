@@ -11,9 +11,11 @@ const Display = (props) => {
     } = props;
 
     return (<div className="display">
+        <div className="main-value">
         {showResult ?
         result :
-        buffer || '0'}
+                buffer || memory || "0"}
+        </div>
     </div>)
 } 
 
