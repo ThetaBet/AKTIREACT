@@ -78,6 +78,24 @@ const OPERATORS = [
         type: "L"
     },
     {
+        value: 'canc',
+        key: 'CE',
+        type: 'M',
+        isSpecial: true
+    },
+    {
+        value: "backSpace",
+        key: "->",
+        type: 'M',
+        isSpecial: true
+    },
+    {
+        value: "percentage",
+        key: "%",
+        type: "M",
+        isSpecial: true
+    },
+    {
         value: "=",
         key: "=",
         type: "L"

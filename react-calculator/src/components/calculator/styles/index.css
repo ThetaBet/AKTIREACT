@@ -29,7 +29,7 @@
     flex-wrap: wrap;
     width: 60%;
     margin-right: auto;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
 
 }
@@ -38,9 +38,9 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 112px;
-    align-items: center;
-    justify-content: center;
+    width: 40%;
+    justify-content: space-around;
+    align-items: flex-end;
 }
 
 .button {
@@ -53,6 +53,8 @@
     background: #292929;
     color: white;
     font-size: 1.6em;
+    transition: all .3s ease-in-out;
+    box-shadow: 2.5px 2.5px 5px black;
 }
 
 
@@ -62,15 +64,19 @@
 }
 
 .operators-wrapper .button {
-    width: 100%;
-    height: 80px;
+    width: calc(50% - 16px);
+    height: 52px;
+    margin: 8px 0;
 }
 
 
 
 .digit-wrapper .buttonType-L {
-    width: 64%;
-    
+    width: 64%; 
+}
+
+.operators-wrapper .buttonType-L {
+    height: 160px;
 }
 
 .display {
@@ -90,4 +96,18 @@
     padding: 16px;
     font-size: 1.6em;
     margin-right: 24px;
+}
+
+.button.operator {
+    background: gray;
+}
+
+.button:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: 10px 10px 10px black;
+}
+
+.button:active {
+    transform: translate(2.5px, 2.5px);
+    box-shadow: none
 }
