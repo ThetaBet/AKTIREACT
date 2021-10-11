@@ -14,7 +14,8 @@ const Display = (props) => {
         <div className="main-value">
         {showResult ?
         result :
-                buffer || memory || "0"}
+            buffer || memory || "0"
+        }
         </div>
     </div>)
 } 
