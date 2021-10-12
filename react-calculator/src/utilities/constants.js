@@ -60,17 +60,17 @@ const OPERATORS = [
     {
         value: "/",
         key: ":",
-        type: "M"
+        type: "L"
     },
     {
         value: "*",
         key: "X",
-        type: "M"
+        type: "L"
     }, 
     {
         value: "-",
         key: "-",
-        type: "M"
+        type: "L"
     }, 
     {
         value: "+",

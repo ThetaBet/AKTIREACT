@@ -1,16 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Stick+No+Bills&display=swap');
+
+body {
+    background-color: linear-gradient(120deg, #08023f, #581179 );
+    background-image: url("./bg.jpg");
+    font-family: 'Poppins';
+     height: 100%; 
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover
+}
+
+@keyframes spin01{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+@keyframes zoomOutIn01{
+    0%,100%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(0.9);
+    }
+}
+
 
 .calculator-body {
     width: 500px;
     /* height: 600px; */
-    background-color: #666666;
+    background-color: #f3f3f3;
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: 20px;
+    box-shadow: 7px 7px #ddd;
 }
-
 .upper-wrapper {
-    background-color: #292929;
-    transform: rotate3d(0,0, .5, 0);
+    background-color: #fff;
     height: 100px;
     border-radius: 8px 8px 0 0;
     display: flex;
@@ -41,18 +69,39 @@
     width: 112px;
     align-items: center;
     justify-content: center;
+    margin-right: 15px;
 }
 
 .button {
-    border-radius: 4px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
     cursor: pointer;
-    background: #292929;
+    background: #08023f;
     color: white;
     font-size: 1.6em;
+    box-shadow: 10px 10px #8c7ae6;
+
+}
+.buttonType-L{
+    background: #8c7ae6;
+    margin: 5px;
+    box-shadow: 8px 8px #08023f;
+    max-height: 50px;
+}
+.buttonType-L:nth-child(5){
+    background: #581179;
+    margin: 5px;
+    box-shadow: 8px 8px #08023f;
+    max-height: 100px;
+}
+.buttonType-L:nth-child(10){
+    background: #581179;
+    margin: 5px;
+    box-shadow: 8px 8px #08023f;
+    max-height: 100px;
 }
 
 
@@ -91,3 +140,115 @@
     font-size: 1.6em;
     margin-right: 24px;
 }
+
+/* SIDEBAR START*/
+.sidebar{
+    width: 300px;
+    background-color: #fff;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 15px;
+}
+.logo-section{
+    align-items: center;
+    text-align: center;
+}
+.logo{
+    width: 250px;
+    animation: zoomOutIn01 10s linear infinite;
+}
+.main-section{
+    transition: .7s;    
+}
+.main-section h3{
+    color: #273c75;
+    font-size: 1.3rem;
+}
+.main-section h2{
+    color: #fff;   
+    font-size: 1rem;
+    background: #8c7ae6;
+    padding: 5px;
+    border-radius: 8px;
+    letter-spacing: 1px;
+}
+.main-section span{
+    color: #581179; 
+    font-size: .6rem;
+}
+.main-section p{
+    color: #292929;   
+}
+.footer-section{
+    background: #581179;
+    color: #f1f1f1;
+    width: 100%;
+    height: 120px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.footer-section p{
+    color: #fff;
+    margin: 0;   
+    font-size: 0.8rem;
+    margin-top: 10px;   
+}
+.footer-section span{
+    color: #ffd32a;
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+
+
+
+.planet {
+    position: absolute;
+    left: 400px;
+    top: 0;
+    width: 50%;
+    height: 700px;
+    animation: spin01 30s linear infinite;
+    z-index: -1;
+}
+.planet-item{
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.planet-item img{
+    height: 100px;
+    width: 100px;
+    animation: spin01 50s linear infinite;
+}
+
+.planet-item:nth-child(1){
+    left: 10px;
+    top:calc(50% - 40px);
+}
+.planet-item:nth-child(2){
+    right: 10px;
+    top:calc(50% - 40px);
+}
+.planet-item:nth-child(3){
+    top: 10px;
+    left: calc(50% - 40px);
+}
+.planet-item:nth-child(4){
+    bottom: 10px;
+    left: calc(50% - 40px);
+}
+
+
+/* SIDEBAR END*/

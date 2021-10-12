@@ -1,6 +1,8 @@
 import React from 'react';
 import Display from '../display';
 import Button from '../button';
+import Sidebar from './sidebar/Sidebar';
+import Planet from './planet-animation/Planet';
 import {
     DIGITS,
     OPERATORS
@@ -66,7 +68,12 @@ export default class Calculator extends React.Component {
 
     render() {
         const { result, operator, memory, buffer} = this.state;
-        return (<div className="calculator-body">
+        return (
+        <div className="container">
+            <Sidebar />
+            <Planet />
+
+        <div className="calculator-body">
             <div className="upper-wrapper">
                 <Display
                     result={result}
@@ -102,6 +109,7 @@ export default class Calculator extends React.Component {
                     ))}
                 </div>
             </div>
-        </div>)
+        </div>
+    </div>)
     }
 }
