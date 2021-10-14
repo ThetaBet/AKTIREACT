@@ -8,23 +8,19 @@ body {
      height: 100%; 
      background-position: center;
      background-repeat: no-repeat;
-     background-size: cover
+     background-size: cover;
 }
 
-@keyframes spin01{
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
 }
-@keyframes zoomOutIn01{
-    0%,100%{
-        transform: scale(1);
+@keyframes bounceTopBottom{
+    0%{
+        transform: scale(1)
     }
     50%{
-        transform: scale(0.9);
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
     }
 }
 
@@ -85,6 +81,7 @@ body {
     box-shadow: 10px 10px #8c7ae6;
 
 }
+
 .buttonType-L{
     background: #8c7ae6;
     margin: 5px;
@@ -204,10 +201,10 @@ body {
     font-size: 1.4rem;
     font-weight: 800;
 }
+/* SIDEBAR END*/
 
 
-
-
+/* PLANET ANIMATION START*/
 .planet {
     position: absolute;
     left: 400px;
@@ -249,6 +246,3 @@ body {
     bottom: 10px;
     left: calc(50% - 40px);
 }
-
-
-/* SIDEBAR END*/

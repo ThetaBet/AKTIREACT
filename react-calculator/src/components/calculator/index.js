@@ -65,6 +65,11 @@ export default class Calculator extends React.Component {
             buffer: `${prevState.buffer}${digitValue}`
         }))
     }
+    setAnimation = () => {
+        document.querySelector("button").onclick = function() {
+            document.querySelector("button").style.animation = "bounceTopBottom .6s linear"
+        }
+    }    
 
     render() {
         const { result, operator, memory, buffer} = this.state;
@@ -93,6 +98,7 @@ export default class Calculator extends React.Component {
                                 label={digit.key}
                                 type={digit.type}
                                 action={this.handleDigit.bind(this)}
+                                onClick={setAnimation}
                             ></Button>
                         )
                     })}
