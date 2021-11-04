@@ -6,7 +6,8 @@ const Button = (props) => {
         type,
         action,
         label,
-        customClass
+        isEnabled,
+        customClass = ''
     } = props;
 
     return (<div className={`button buttonType-${type} ${customClass}`} onClick={() => {action(value)}}>

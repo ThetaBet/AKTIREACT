@@ -102,7 +102,21 @@ const OPERATORS = [
     }
 ];
 
+const TOOLS = [
+    {
+        label: 'LIST',
+        value:'h',
+        type: 'history'
+    },
+    {
+        label: 'CA',
+        value:'d',
+        type: 'delete'
+    }
+]
+
 export {
     DIGITS,
-    OPERATORS
+    OPERATORS,
+    TOOLS   
 }

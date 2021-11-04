@@ -1,9 +1,12 @@
 import React from 'react';
 import Display from '../display';
 import Button from '../button';
+import History from '../history';
+
 import {
     DIGITS,
-    OPERATORS
+    OPERATORS,
+    TOOLS
 } from '../../utilities/constants';
 
 import './styles/index.css';
@@ -16,6 +19,12 @@ export default class Calculator extends React.Component {
             operator: null,
             memory: 0,
             buffer: '',
+            firstDigit: 0,
+            secondDigit: 0,
+            lastOperator: '',
+            histroyArrray: [],
+            showHistory: false,
+            isEnabled: false,
             showResult: false
         }
     }
@@ -43,6 +52,12 @@ export default class Calculator extends React.Component {
         }
     }
 
+    closeHistory = () => {
+        this.setState({
+            showHistory: false
+        })
+    }
+
     handleOperator(newOperator) {
         if (newOperator === "=") {
             this.setState((prevState) => ({
@@ -51,8 +66,19 @@ export default class Calculator extends React.Component {
                 this.executeOperations(prevState.memory, prevState.operator, Number(prevState.buffer)),
                 showResult: true,
                 buffer: "",
-                memory: Number(prevState.buffer ? prevState.buffer : prevState.memory)
-            }))       
+                memory: Number(prevState.buffer ? prevState.buffer : prevState.memory),
+                firstDigit: prevState.memory,
+                secondDigit: Number(prevState.buffer),
+                lastOperator: prevState.operator
+            }), () => {
+                const {result, histroyArrray, lastOperator, firstDigit, secondDigit} = this.state;
+                let item = {
+                    operation: `${firstDigit} ${lastOperator} ${secondDigit}`,
+                    result: result
+                };
+                histroyArrray.push(item);
+
+            })       
         } else {
                 this.setState((prevState) => ({
                     operator: newOperator,
@@ -67,6 +93,23 @@ export default class Calculator extends React.Component {
         this.setState((prevState) => ({
             buffer: prevState.buffer.length <= 12 ? `${prevState.buffer}${digitValue}` : prevState.buffer
         }))
+    }
+
+    handleToolsAction(action) {
+        switch (action) {
+            case 'h':
+                this.setState({
+                    showHistory: true
+                })
+                break;
+            case 'd':
+                this.setState({
+                    result: 0
+                })
+                break;
+            default:
+                break;
+        }
     }
 
     calcPercentage(partial, total) {
@@ -109,49 +152,81 @@ export default class Calculator extends React.Component {
         }
     }
 
-    render() {
-        const { result, operator, memory, buffer, showResult} = this.state;
-        return (<div className="calculator-body">
-            <div className="upper-wrapper">
-                <Display
-                    result={result}
-                    operator={operator}
-                    showResult={showResult && buffer === ''}
-                    memory={memory}
-                    buffer={buffer}
-                />
-            </div>
-            <div className="bottom-wrapper">
-                <div className="memory-wrapper">
+    renderHistory() {
+        const {histroyArrray, showHistory} = this.state;
+        return (
+            <History
+                historyArray={histroyArrray}
+                show={showHistory}
+                callBack={this.closeHistory}
+            ></History>
+        )
+    }
 
+    render() {
+        const { result,
+                operator,
+                memory,
+                buffer,
+                showHistory,
+                showResult} = this.state;
+        return (
+            <div className="calculator-body">
+                {showHistory && (
+                    this.renderHistory()
+                )}
+                <div className="upper-wrapper">
+                    <Display
+                        result={result}
+                        operator={operator}
+                        showResult={showResult && buffer===""}
+                        memory={memory}
+                        buffer={buffer}
+                    />
                 </div>
-                <div className="digit-wrapper">
-                    {DIGITS.map((digit) => {
+                <div className="tools-wrapper">
+                    {TOOLS.map(tool => {
                         return (
                             <Button
-                                value={digit.value}
-                                key={digit.key}
-                                label={digit.key}
-                                type={digit.type}
-                                action={this.handleDigit.bind(this)}
-                                customClass="digit"
-                            ></Button>
+                                type={tool.type}
+                                label={tool.label}
+                                value={tool.value}
+                                action={this.handleToolsAction.bind(this)}
+                            />
                         )
                     })}
                 </div>
-                <div className="operators-wrapper">
-                    {OPERATORS.map(operator => (
-                        <Button
-                            value={operator.value}
-                            key={operator.key}
-                            label={operator.key}
-                            type={operator.type}
-                            action={operator.isSpecial ? this.handleSpecial.bind(this) :  this.handleOperator.bind(this)}
-                            customClass="operator"
-                        ></Button>
-                    ))}
+                <div className="bottom-wrapper">
+                    <div className="memory-wrapper">
+
+                    </div>
+                    <div className="digit-wrapper">
+                        {DIGITS.map((digit) => {
+                            return (
+                                <Button
+                                    value={digit.value}
+                                    key={digit.key}
+                                    label={digit.key}
+                                    type={digit.type}
+                                    action={this.handleDigit.bind(this)}
+                                    customClass="digit"
+                                ></Button>
+                            )
+                        })}
+                    </div>
+                    <div className="operators-wrapper">
+                        {OPERATORS.map(operator => (
+                            <Button
+                                value={operator.value}
+                                key={operator.key}
+                                label={operator.key}
+                                type={operator.type}
+                                action={operator.isSpecial ? this.handleSpecial.bind(this) :  this.handleOperator.bind(this)}
+                                customClass="operator"
+                            ></Button>
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div>)
-    }
+        )}
 }
