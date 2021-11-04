@@ -75,7 +75,7 @@ const OPERATORS = [
     {
         value: "+",
         key: "+",
-        type: "L"
+        type: "M"
     },
     {
         value: 'canc',
