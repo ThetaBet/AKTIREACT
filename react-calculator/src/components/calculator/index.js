@@ -171,60 +171,64 @@ export default class Calculator extends React.Component {
                 showHistory,
                 showResult} = this.state;
         return (
-            <div className="calculator-body">
-                {showHistory && (
-                    this.renderHistory()
-                )}
-                <div className="upper-wrapper">
-                    <Display
-                        result={result}
-                        operator={operator}
-                        showResult={showResult && buffer===""}
-                        memory={memory}
-                        buffer={buffer}
-                    />
-                </div>
-                <div className="tools-wrapper">
-                    {TOOLS.map(tool => {
-                        return (
-                            <Button
-                                type={tool.type}
-                                label={tool.label}
-                                value={tool.value}
-                                action={this.handleToolsAction.bind(this)}
+            <div className={`calculator-body ${showHistory ? 'open' : ''}`}>
+                <div className="calculator-body-inner">
+                    <div className="calculator-front">
+                        <div className="upper-wrapper">
+                            <Display
+                                result={result}
+                                operator={operator}
+                                showResult={showResult && buffer===""}
+                                memory={memory}
+                                buffer={buffer}
                             />
-                        )
-                    })}
-                </div>
-                <div className="bottom-wrapper">
-                    <div className="memory-wrapper">
+                        </div>
+                        <div className="tools-wrapper">
+                            {TOOLS.map(tool => {
+                                return (
+                                    <Button
+                                        type={tool.type}
+                                        label={tool.label}
+                                        value={tool.value}
+                                        action={this.handleToolsAction.bind(this)}
+                                    />
+                                )
+                            })}
+                        </div>
+                        <div className="bottom-wrapper">
+                            <div className="memory-wrapper">
 
+                            </div>
+                            <div className="digit-wrapper">
+                                {DIGITS.map((digit) => {
+                                    return (
+                                        <Button
+                                            value={digit.value}
+                                            key={digit.key}
+                                            label={digit.key}
+                                            type={digit.type}
+                                            action={this.handleDigit.bind(this)}
+                                            customClass="digit"
+                                        ></Button>
+                                    )
+                                })}
+                            </div>
+                            <div className="operators-wrapper">
+                                {OPERATORS.map(operator => (
+                                    <Button
+                                        value={operator.value}
+                                        key={operator.key}
+                                        label={operator.key}
+                                        type={operator.type}
+                                        action={operator.isSpecial ? this.handleSpecial.bind(this) :  this.handleOperator.bind(this)}
+                                        customClass="operator"
+                                    ></Button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
-                    <div className="digit-wrapper">
-                        {DIGITS.map((digit) => {
-                            return (
-                                <Button
-                                    value={digit.value}
-                                    key={digit.key}
-                                    label={digit.key}
-                                    type={digit.type}
-                                    action={this.handleDigit.bind(this)}
-                                    customClass="digit"
-                                ></Button>
-                            )
-                        })}
-                    </div>
-                    <div className="operators-wrapper">
-                        {OPERATORS.map(operator => (
-                            <Button
-                                value={operator.value}
-                                key={operator.key}
-                                label={operator.key}
-                                type={operator.type}
-                                action={operator.isSpecial ? this.handleSpecial.bind(this) :  this.handleOperator.bind(this)}
-                                customClass="operator"
-                            ></Button>
-                        ))}
+                    <div className="calculator-back">
+                        {this.renderHistory()}
                     </div>
                 </div>
             </div>
