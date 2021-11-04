@@ -2,7 +2,7 @@
 
 .calculator-body {
     width: 500px;
-    height: 600px;
+    height: 565px;
     background-color: transparent;
     box-sizing: border-box;
     border-radius: 8px;
@@ -141,25 +141,15 @@
 
 /* History slider */
 .history-slider {
-    background: white;
-    /* position: fixed; */
+    background: rgb(0, 0, 0);
     width: 100%;
     height: 100%;
-    /* z-index: 100;
-    transform: translateY(100%);
-    transition: transform 0.9s ease-out; */
-    border: solid 1px black;
     padding: 16px;
     text-align: end;
-    border-radius: 11px;
 }
 
-/* .history-slider.open {
-    transform: translateY(0);
-} */
-
-.history-slider .history-container {
-    /* overflow-y: auto; */
+.history-slider .history-container p {
+    color: white;
 }
 .button.operator {
     background: orange;
