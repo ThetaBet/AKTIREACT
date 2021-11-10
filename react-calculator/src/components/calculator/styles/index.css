@@ -53,7 +53,7 @@ body {
     flex-wrap: wrap;
     width: 60%;
     margin-right: auto;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
 
 }
@@ -62,6 +62,9 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    width: 40%;
+    justify-content: space-around;
+    align-items: flex-end;
     width: 112px;
     align-items: center;
     justify-content: center;
@@ -78,6 +81,8 @@ body {
     background: #08023f;
     color: white;
     font-size: 1.6em;
+    transition: all .3s ease-in-out;
+    box-shadow: 2.5px 2.5px 5px black;
     box-shadow: 10px 10px #8c7ae6;
 
 }
@@ -108,15 +113,19 @@ body {
 }
 
 .operators-wrapper .button {
-    width: 100%;
-    height: 80px;
+    width: calc(50% - 16px);
+    height: 52px;
+    margin: 8px 0;
 }
 
 
 
 .digit-wrapper .buttonType-L {
-    width: 64%;
-    
+    width: 64%; 
+}
+
+.operators-wrapper .buttonType-L {
+    height: 160px;
 }
 
 .display {
@@ -138,6 +147,19 @@ body {
     margin-right: 24px;
 }
 
+.button.operator {
+    background: gray;
+}
+
+.button:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: 10px 10px 10px black;
+}
+
+.button:active {
+    transform: translate(2.5px, 2.5px);
+    box-shadow: none
+}
 /* SIDEBAR START*/
 .sidebar{
     width: 300px;
@@ -246,3 +268,9 @@ body {
     bottom: 10px;
     left: calc(50% - 40px);
 }
+<<<<<<< HEAD
+=======
+
+
+/* SIDEBAR END*/
+>>>>>>> afee11b314714862928d79b81fa98528977d9ce4

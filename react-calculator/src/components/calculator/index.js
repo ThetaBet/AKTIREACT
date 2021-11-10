@@ -18,6 +18,7 @@ export default class Calculator extends React.Component {
             operator: null,
             memory: 0,
             buffer: '',
+            showResult: false
         }
     }
 
@@ -39,45 +40,85 @@ export default class Calculator extends React.Component {
                 return firstTerm * secondTerm
             case "/":
                 return firstTerm / secondTerm
-            default: 
-            return secondTerm
+            default:
+                return secondTerm
         }
     }
 
     handleOperator(newOperator) {
         if (newOperator === "=") {
             this.setState((prevState) => ({
-                result: this.executeOperations(prevState.memory, prevState.operator, Number(prevState.buffer)),
-                operator: newOperator,
-                buffer: ""
-            }))       
+                result: prevState.showResult ?
+                    this.executeOperations(prevState.result, prevState.operator, prevState.memory) :
+                    this.executeOperations(prevState.memory, prevState.operator, Number(prevState.buffer)),
+                showResult: true,
+                buffer: "",
+                memory: Number(prevState.buffer ? prevState.buffer : prevState.memory)
+            }))
         } else {
-                this.setState((prevState) => ({
-                    operator: newOperator,
-                    memory: Number(prevState.buffer),
-                    buffer: ""
-                }))
-            }
+            this.setState((prevState) => ({
+                operator: newOperator,
+                memory: Number(prevState.buffer),
+                buffer: "",
+                showResult: false
+            }))
+        }
     }
 
     handleDigit(digitValue) {
         this.setState((prevState) => ({
-            buffer: `${prevState.buffer}${digitValue}`
+            buffer: prevState.buffer.length <= 12 ? `${prevState.buffer}${digitValue}` : prevState.buffer
         }))
     }
-    setAnimation = () => {
-        document.querySelector("button").onclick = function() {
-            document.querySelector("button").style.animation = "bounceTopBottom .6s linear"
+
+    calcPercentage(partial, total) {
+        return (total * partial) / 100;
+    }
+
+    handleSpecial(value) {
+        const { operator, showResult } = this.state
+        switch (value) {
+            case 'canc':
+                this.setState({
+                    result: 0,
+                    showResult: false,
+                    buffer: "",
+                    memory: 0,
+                    operator: null
+                })
+                break
+            case 'backSpace':
+                this.setState((prevState) => ({
+                    buffer: prevState.buffer.substring(0, prevState.buffer.length - 1)
+                }))
+                break
+            case 'percentage':
+                if (!showResult && operator) {
+                    this.setState((prevState) => ({
+                        result: prevState.operator === "+" || prevState.operator === "-" ?
+                            this.executeOperations(prevState.memory, prevState.operator, this.calcPercentage(Number(prevState.buffer), prevState.memory)) :
+                            prevState.operator === "*" ?
+                                this.calcPercentage(Number(prevState.buffer), prevState.memory) :
+                                this.executeOperations(prevState.memory, prevState.operator, Number(prevState.buffer) / 100),
+                        showResult: true,
+                        buffer: "",
+                        memory: Number(prevState.buffer ? prevState.buffer : prevState.memory)
+                    }))
+                }
+                break
+            default:
+                return
         }
-    }    
+    }
 
     render() {
-        const { result, operator, memory, buffer} = this.state;
+        const { result, operator, memory, buffer, showResult } = this.state;
         return (
-        <div className="container">
-            <Sidebar />
-            <Planet />
+            <div className="container">
+                <Sidebar />
+                <Planet />
 
+<<<<<<< HEAD
         <div className="calculator-body">
             <div className="upper-wrapper">
                 <Display
@@ -113,9 +154,50 @@ export default class Calculator extends React.Component {
                             action={this.handleOperator.bind(this)}
                         ></Button>
                     ))}
+=======
+                <div className="calculator-body">
+                    <div className="upper-wrapper">
+                        <Display
+                            result={result}
+                            operator={operator}
+                            showResult={showResult && buffer === ''}
+                            memory={memory}
+                            buffer={buffer}
+                        />
+                    </div>
+                    <div className="bottom-wrapper">
+                        <div className="memory-wrapper">
+
+                        </div>
+                        <div className="digit-wrapper">
+                            {DIGITS.map((digit) => {
+                                return (
+                                    <Button
+                                        value={digit.value}
+                                        key={digit.key}
+                                        label={digit.key}
+                                        type={digit.type}
+                                        action={this.handleDigit.bind(this)}
+                                        customClass="digit"
+                                    ></Button>
+                                )
+                            })}
+                        </div>
+                        <div className="operators-wrapper">
+                            {OPERATORS.map(operator => (
+                                <Button
+                                    value={operator.value}
+                                    key={operator.key}
+                                    label={operator.key}
+                                    type={operator.type}
+                                    action={operator.isSpecial ? this.handleSpecial.bind(this) : this.handleOperator.bind(this)}
+                                    customClass="operator"
+                                ></Button>
+                            ))}
+                        </div>
+                    </div>
+>>>>>>> afee11b314714862928d79b81fa98528977d9ce4
                 </div>
-            </div>
-        </div>
-    </div>)
+            </div>)
     }
 }

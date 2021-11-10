@@ -5,10 +5,11 @@ const Button = (props) => {
         value, 
         type,
         action,
-        label
+        label,
+        customClass
     } = props;
 
-    return (<div className={`button buttonType-${type}`} onClick={() => {action(value)}}>
+    return (<div className={`button buttonType-${type} ${customClass}`} onClick={() => {action(value)}}>
         {label}
     </div>)
 }

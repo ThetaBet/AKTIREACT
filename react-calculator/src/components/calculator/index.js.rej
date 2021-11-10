@@ -1,0 +1,13 @@
+diff a/react-calculator/src/components/calculator/index.js b/react-calculator/src/components/calculator/index.js	(rejected hunks)
+@@ -65,6 +65,11 @@
+             buffer: `${prevState.buffer}${digitValue}`
+         }))
+     }
++    setAnimation = () => {
++        document.querySelector("button").onclick = function() {
++            document.querySelector("button").style.animation = "bounceTopBottom .6s linear"
++        }
++    }    
+ 
+     render() {
+         const { result, operator, memory, buffer} = this.state;
